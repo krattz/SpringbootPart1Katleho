@@ -1,34 +1,39 @@
 package Service;
 
-import Model.FakeRepoInterface;
-import Model.FakeRepo;
+import Dao.FakeRepoInterface;
+import Dao.FakeRepo;
+import Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 @Service
-public class  UserServiceImpl implements FakeRepoInterface  {
-    private FakeRepoInterface fk;
+public class  UserServiceImpl implements FakeRepoInterface {
 
+    @Autowired
+    public LinkedList<Dao.FakeRepo> getList() {
+        return getList();
+    }
 
     @Autowired
     LinkedList<FakeRepo>list = new LinkedList();
 
-    public long addUser(long Id , String name, String surname){
+    public String addUser(long Id , String name, String surname){
         insertUser(Id,name,surname);
-      return  getUser(Id);
+      return  User.getId() + User.getName() + User.getSurname();
     }
 
     public void removeUser(long Id) {
-        fk.deleteUser(findUserById(Id));
+        deleteUser(findUserById(Id));
     }
-
-    public long getUser(long Id) {
-        if(list.contains(Id)){
-            System.out.println("Hello" + list.get((int) Id));
+@Autowired
+    public String getUser(long Id) {
+        if(FakeRepo.DB.contains(findUserById(Id))){
+//            System.out.println("Hello" + FakeRepo.DB.get((int) Id));
         }
-        return Id;
+        return "Hello "+ FakeRepo.DB.get((int)Id);
     }
     @Override
     public String insertUser(long id, String name, String surname) {
@@ -41,9 +46,15 @@ public class  UserServiceImpl implements FakeRepoInterface  {
 
     @Override
     public void deleteUser(long id) {
-        if(list.contains(findUserById(id))){
+        if(FakeRepo.DB.contains(findUserById(id))){
             removeUser(id);
         }
         System.out.println(findUserById(id) + " removed");
+    }
+
+    @Autowired
+    public List<User> selectUser() {
+        System.out.println("trying");
+        return FakeRepo.DB;
     }
 }

@@ -2,11 +2,12 @@ package Model;
 
 
 import Service.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class User {
-        private long Id;
-        private String name;
-        private String surname;
+    private static long Id;
+        private static String name;
+        private static String surname;
         private UserServiceImpl userImpl;
 
     public User(long id, String name, String surname) {
@@ -17,32 +18,26 @@ public class User {
 
     }
 
-
-    public  long getId() {
-        return setId(Id);
+    public static long getId() {
+        return Id;
     }
     public long setId(long id) {
         Id = id;
-        return userImpl.getUser(id);
+        return id;
     }
-
-    public void getName() {
-        setName(name);
-    }
-    public String setName(String name) {
-        this.name = name;
+    public static String setName(String name){
         return name;
     }
-
-    public void getSurname() {
-        setSurname(surname);
+    public static String getName() {
+        setName(name);
+        return name;
     }
-    public String setSurname(String surname) {
-
-        this.surname = surname;
+    @Autowired
+    public static String getSurname() {
+        setSurname(surname);
+        return surname;
+    }
+    public static String setSurname(String surname) {
     return surname;
     }
-
-
-
 }
