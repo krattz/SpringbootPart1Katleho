@@ -11,10 +11,7 @@ public interface UserService<name,surname, Id> {
 
    void removeUser(long Id);
 
-   void getUser(long Id);
-
-
-   List<User> selectUser();
+   String getUser(long Id);
 
    Optional<Object> findUserById(long id);
 }

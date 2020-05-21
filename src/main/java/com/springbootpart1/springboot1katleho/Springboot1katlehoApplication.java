@@ -18,6 +18,7 @@ public class Springboot1katlehoApplication implements CommandLineRunner {
 
 		System.out.println(user.addUser(1,"Mike", "Tyson"));
 		System.out.println(user.insertUser(5, "Black", "Gun"));
-
+		System.out.println(user.getUser(3));
+		System.out.println(user.insertUser(6, "Blanka", "Dupoint"));
 	}
 }
