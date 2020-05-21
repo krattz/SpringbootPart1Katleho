@@ -19,7 +19,8 @@ public class  UserServiceImpl implements FakeRepoInterface {
 
     public String addUser(long Id , String name, String surname){
         insertUser(Id,name,surname);
-      return  User.getId() + User.getName() + User.getSurname();
+
+      return   name+ " entered";
     }
 
     public void removeUser(long Id) {
@@ -28,11 +29,12 @@ public class  UserServiceImpl implements FakeRepoInterface {
 
     public String getUser(long Id) {
 
-        return "Hello "+ FakeRepo.DB.get((int)Id).toString();
+        return "Hello "+ FakeRepo.DB.get((int)findUserById(Id)).toString();
     }
     @Override
     public String insertUser(long id, String name, String surname) {
-    return id+name+surname;
+        FakeRepo.DB.add(1, new User(id, name, surname));
+    return id+" "+name+" "+surname;
     }
     @Override
     public long findUserById(long id) {
@@ -50,6 +52,7 @@ public class  UserServiceImpl implements FakeRepoInterface {
     @Autowired
     public List<User> selectUser() {
         System.out.println("trying");
+
         return FakeRepo.DB;
     }
 }
