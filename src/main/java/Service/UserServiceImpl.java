@@ -6,19 +6,16 @@ import Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class  UserServiceImpl implements FakeRepoInterface {
 
-    @Autowired
-    public LinkedList<Dao.FakeRepo> getList() {
-        return getList();
-    }
 
-    @Autowired
-    LinkedList<FakeRepo>list = new LinkedList();
+    public List<User>  getList() {
+        return Arrays.asList(new User(1, "Mzekelelo", "madisha")) ;
+    }
 
     public String addUser(long Id , String name, String surname){
         insertUser(Id,name,surname);
@@ -28,12 +25,10 @@ public class  UserServiceImpl implements FakeRepoInterface {
     public void removeUser(long Id) {
         deleteUser(findUserById(Id));
     }
-@Autowired
+
     public String getUser(long Id) {
-        if(FakeRepo.DB.contains(findUserById(Id))){
-//            System.out.println("Hello" + FakeRepo.DB.get((int) Id));
-        }
-        return "Hello "+ FakeRepo.DB.get((int)Id);
+
+        return "Hello "+ FakeRepo.DB.get((int)Id).toString();
     }
     @Override
     public String insertUser(long id, String name, String surname) {

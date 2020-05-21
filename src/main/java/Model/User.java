@@ -8,7 +8,6 @@ public class User {
     private static long Id;
         private static String name;
         private static String surname;
-        private UserServiceImpl userImpl;
 
     public User(long id, String name, String surname) {
 
@@ -32,7 +31,7 @@ public class User {
         setName(name);
         return name;
     }
-    @Autowired
+
     public static String getSurname() {
         setSurname(surname);
         return surname;
