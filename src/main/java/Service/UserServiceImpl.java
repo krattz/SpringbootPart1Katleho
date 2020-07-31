@@ -3,44 +3,32 @@ package Service;
 import Dao.FakeRepoInterface;
 import Dao.FakeRepo;
 import Model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class  UserServiceImpl implements FakeRepoInterface {
+public class  UserServiceImpl implements UserService {
+@Autowired
+    FakeRepo repo;
 
-    public String addUser(long Id , String name, String surname){
-        insertUser(Id,name,surname);
-
-      return   name+ " entered";
-    }
-
+    @Override
     public void removeUser(long Id) {
-        deleteUser(Id);
+        System.out.println(repo.findUserById(Id).getName() + " removed");
+        repo.deleteUser(Id);
     }
 
+    @Override
     public String getUser(long Id) {
-        return "Hello " +FakeRepo.DB.get(Id).getName();
+
+        return "Hello " + repo.DB.get(Id).getName();
     }
 
-    @Override
-    public String insertUser(long id, String name, String surname) {
-        FakeRepo.DB.put(1l, new User(id, name, surname));
-    return id+" "+name+" "+surname;
-    }
-    @Override
-    public User findUserById(long id) {
-        return FakeRepo.DB.get(id);
-    }
+    public String addUser(long Id, String name, String surname) {
+        repo.insertUser(Id, name, surname);
 
-    @Override
-    public void deleteUser(long id) {
-        if(FakeRepo.DB.containsKey(findUserById(id))){
-            removeUser(id);
-        }
-        System.out.println(findUserById(id) + " removed");
+        return name + " entered";
     }
-
 }

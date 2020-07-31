@@ -6,19 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Springboot1katlehoApplication implements CommandLineRunner {
+public class Springboot1katlehoApplication{
 
 	public static void main(String[] args) {
 		SpringApplication.run(Springboot1katlehoApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-			UserServiceImpl user = new UserServiceImpl();
-
-		System.out.println(user.addUser(1,"Mike", "Tyson"));
-		System.out.println(user.insertUser(5, "Black", "Gun"));
-		System.out.println(user.getUser(3));
-		System.out.println(user.insertUser(6, "Blanka", "Dupoint"));
-	}
 }
